@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/sura_details_args.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_theme.dart';
 import '../../../utils/constants.dart';
+import '../../tabs details/sura_details/sura_details.dart';
 
 class QuranTab extends StatelessWidget {
   const QuranTab({super.key});
@@ -78,20 +80,29 @@ class QuranTab extends StatelessWidget {
     return ListView.builder(
       itemCount: Constants.suraNames.length,
       itemBuilder: (context, index) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-                child: Text(
-              Constants.suraNames[index],
-              textAlign: TextAlign.center,
-              style: AppTheme.regularTitleTextStyle,
-            )),
-            Expanded(
-                child: Text("${Constants.versesNumber[index]}",
-                    textAlign: TextAlign.center,
-                    style: AppTheme.regularTitleTextStyle)),
-          ],
+        String suraName = Constants.suraNames[index];
+        return InkWell(
+          onTap: () {
+            String fileName = "${index + 1}.txt";
+            Navigator.pushNamed(context, SuraDetails.routeName,
+                arguments:
+                    DetailsScreenArgs(fileName: fileName, suraName: suraName));
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                  child: Text(
+                suraName,
+                textAlign: TextAlign.center,
+                style: AppTheme.regularTitleTextStyle,
+              )),
+              Expanded(
+                  child: Text("${Constants.versesNumber[index]}",
+                      textAlign: TextAlign.center,
+                      style: AppTheme.regularTitleTextStyle)),
+            ],
+          ),
         );
       },
     );

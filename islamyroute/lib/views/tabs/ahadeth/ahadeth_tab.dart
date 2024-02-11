@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:islamyroute/model/sura_details_args.dart';
+import 'package:islamyroute/views/tabs%20details/hadeth_details/hadeth_details.dart';
 
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_theme.dart';
-import '../../../utils/constants.dart';
 
 class AhadethTab extends StatelessWidget {
   const AhadethTab({super.key});
@@ -63,16 +64,23 @@ class AhadethTab extends StatelessWidget {
     return ListView.builder(
       itemCount: 50,
       itemBuilder: (context, index) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-                child: Text(
-              "الحديث رقم  ${index + 1}",
-              textAlign: TextAlign.center,
-              style: AppTheme.regularTitleTextStyle,
-            )),
-          ],
+        String hadethName = "الجديث رقم ${index + 1}";
+        return InkWell(
+          onTap: () {
+            String fileName = "h${index + 1}.txt";
+            Navigator.pushNamed(context, HadethDetails.routeName,
+                arguments: DetailsScreenArgs(
+                    fileName: fileName, suraName: hadethName));
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                  child: Text("الجديث رقم ${index + 1}",
+                      textAlign: TextAlign.center,
+                      style: AppTheme.regularTitleTextStyle)),
+            ],
+          ),
         );
       },
     );
