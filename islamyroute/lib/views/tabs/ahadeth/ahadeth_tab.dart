@@ -64,7 +64,7 @@ class AhadethTab extends StatelessWidget {
     return ListView.builder(
       itemCount: 50,
       itemBuilder: (context, index) {
-        String hadethName = "الجديث رقم ${index + 1}";
+        String hadethName = "الحديث رقم ${index + 1}";
         return InkWell(
           onTap: () {
             String fileName = "h${index + 1}.txt";
@@ -76,7 +76,7 @@ class AhadethTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                  child: Text("الجديث رقم ${index + 1}",
+                  child: Text("الحديث رقم ${index + 1}",
                       textAlign: TextAlign.center,
                       style: AppTheme.regularTitleTextStyle)),
             ],
